@@ -1,7 +1,7 @@
 function renderArticle(articleData) {
   const article = document.createElement("article");
   article.classList.add("article");
-  article.id = `article-${articleData.id}`;
+  article.id = `article${articleData.id}`;
 
   const title = document.createElement("h3");
   title.classList.add("article-title");
@@ -15,8 +15,8 @@ function renderArticle(articleData) {
   author.classList.add("article-author");
   author.textContent = articleData.author;
 
-  article.append(title, author, content);
-  document.querySelector("#articles").appendChild(article);
+  article.append(title, content, author);
+  document.querySelector("#articles").append(article);
 }
 
 async function fetchArticles() {
@@ -26,6 +26,4 @@ async function fetchArticles() {
   articles.forEach(renderArticle);
 }
 
-document.addEventListener("DOMContentLoaded", () => {
-  fetchArticles();
-});
+document.addEventListener("DOMContentLoaded", () => fetchArticles());
